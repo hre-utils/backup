@@ -1,0 +1,19 @@
+# Backup
+
+Streamlines periodic backups to a remote server.
+
+## Where we're at
+
+Copy/paste of a previous version of this project.
+Also written in bash.
+
+I think it's pretty solid, but I was aiming for a different methodology at the time.
+I stand by the clear & concise nature of the prior version--though can certainly improve upon it now.
+
+
+## Where we gotta go
+
+- [ ] Logging
+- [ ] (Lack of) verbocity, too much information currently printed to terminal
+- [ ] Standardization with rest of hre-utils
+- [ ] Utilization of hre-lib's

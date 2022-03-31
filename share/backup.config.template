@@ -1,0 +1,55 @@
+#!/bin/bash
+# 'config' file to source for bash
+#
+# Each 'section' must have an equivalently named var (declared as an array)
+# containing a list of the files to back up. Optionally, a variable suffixed
+# with '_exclude' contains a list of paths to exlude from that section. The
+# nonsense below is to overcome Bash's inability to nest arrays.
+#
+# More or less everything below translates to:
+#  {
+#     _homedir: {
+#        files: [
+#           '/home/user1/Documents',
+#           '/home/user1/Desktop'
+#        ]
+#     },
+#     _dotfiles: {
+#        exclude: [ 'view/', 'undodir/' ]
+#        files: [
+#           '/home/aurelius/.bashrc',
+#           '/home/aurelius/.vim',
+#           '/home/aurelius/.vimrc'
+#        ],
+#     }
+#  }
+
+#                                   system
+#-------------------------------------------------------------------------------
+__host__='host'                  # Host as defined in .ssh/config
+__basedir__='/path/to/backup'    # Path relative to $__host__
+
+declare -A __sections__=(
+   [_homedir]='home/'            # Mapping of an array name (defined below) to
+   [_dotfiles]='dotfiles/'       # the destination appended to the __basedir__.
+)
+
+#                                   homedir
+#-------------------------------------------------------------------------------
+declare -a _homedir=(
+   /home/user1/Documents
+   /home/user1/Desktop
+)
+
+#                                   dotfiles
+#-------------------------------------------------------------------------------
+declare -a _dotfiles=(
+   /home/aurelius/.bashrc
+   /home/aurelius/.vim
+   /home/aurelius/.vimrc
+)
+
+declare -a _dotfiles_exclude=(
+   view/                         # Optional varable, append '_exclude' to the
+   undodir/                      # array name to pass --exclude options.
+)
